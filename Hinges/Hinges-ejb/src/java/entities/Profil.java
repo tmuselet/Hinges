@@ -7,6 +7,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +18,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -54,6 +57,18 @@ public class Profil implements Serializable {
     @Size(max = 30)
     @Column(name = "REMARQUES")
     private String remarques;
+    @OneToMany(mappedBy = "idProfil")
+    private List<GarProfil> garProfilList;
+    @OneToMany(mappedBy = "idProfil")
+    private List<TapProfil> tapProfilList;
+    @OneToMany(mappedBy = "idProfil")
+    private List<RepasProfil> repasProfilList;
+    @JoinColumn(name = "GROUPE_ID", referencedColumnName = "ID")
+    @ManyToOne
+    private Groupe groupeId;
+    @JoinColumn(name = "CLASSE_ID", referencedColumnName = "ID")
+    @ManyToOne
+    private Classe classeId;
     @JoinColumn(name = "ADRESSE_ID", referencedColumnName = "ID")
     @ManyToOne
     private Adresse adresseId;
@@ -103,6 +118,49 @@ public class Profil implements Serializable {
 
     public void setRemarques(String remarques) {
         this.remarques = remarques;
+    }
+
+    @XmlTransient
+    public List<GarProfil> getGarProfilList() {
+        return garProfilList;
+    }
+
+    public void setGarProfilList(List<GarProfil> garProfilList) {
+        this.garProfilList = garProfilList;
+    }
+
+    @XmlTransient
+    public List<TapProfil> getTapProfilList() {
+        return tapProfilList;
+    }
+
+    public void setTapProfilList(List<TapProfil> tapProfilList) {
+        this.tapProfilList = tapProfilList;
+    }
+
+    @XmlTransient
+    public List<RepasProfil> getRepasProfilList() {
+        return repasProfilList;
+    }
+
+    public void setRepasProfilList(List<RepasProfil> repasProfilList) {
+        this.repasProfilList = repasProfilList;
+    }
+
+    public Groupe getGroupeId() {
+        return groupeId;
+    }
+
+    public void setGroupeId(Groupe groupeId) {
+        this.groupeId = groupeId;
+    }
+
+    public Classe getClasseId() {
+        return classeId;
+    }
+
+    public void setClasseId(Classe classeId) {
+        this.classeId = classeId;
     }
 
     public Adresse getAdresseId() {

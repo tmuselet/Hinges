@@ -6,6 +6,7 @@
 
 package session;
 
+import entities.Classe;
 import entities.Groupe;
 import entities.Profil;
 import java.util.List;
@@ -48,7 +49,8 @@ public class ProfilManager {
     
     public List<Profil> getProfilsByGroupe(Groupe groupe){
         Query query = em.createNamedQuery("Profil.findAllByGroupe");  
-        query.setParameter("groupe", groupe);
+        query.setParameter("groupe_id", groupe.getId());
         return query.getResultList();
     }
+
 }
