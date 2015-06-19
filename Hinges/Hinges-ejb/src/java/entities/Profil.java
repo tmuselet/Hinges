@@ -7,6 +7,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +18,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,8 +33,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Profil.findAll", query = "SELECT p FROM Profil p"),
-    @NamedQuery(name = "Profil.findAllByGroupe", query = "SELECT p FROM Profil p WHERE p.groupe_id = :groupe_id"),
-    @NamedQuery(name = "Profil.findAllByClasse", query = "SELECT p FROM Profil p WHERE p.classe_id = :classe_id"),
     @NamedQuery(name = "Profil.findById", query = "SELECT p FROM Profil p WHERE p.id = :id"),
     @NamedQuery(name = "Profil.findByNom", query = "SELECT p FROM Profil p WHERE p.nom = :nom"),
     @NamedQuery(name = "Profil.findByPrenom", query = "SELECT p FROM Profil p WHERE p.prenom = :prenom"),
@@ -56,6 +57,12 @@ public class Profil implements Serializable {
     @Size(max = 30)
     @Column(name = "REMARQUES")
     private String remarques;
+    @OneToMany(mappedBy = "idProfil")
+    private List<GarProfil> garProfilList;
+    @OneToMany(mappedBy = "idProfil")
+    private List<TapProfil> tapProfilList;
+    @OneToMany(mappedBy = "idProfil")
+    private List<RepasProfil> repasProfilList;
     @JoinColumn(name = "GROUPE_ID", referencedColumnName = "ID")
     @ManyToOne
     private Groupe groupeId;
@@ -111,6 +118,33 @@ public class Profil implements Serializable {
 
     public void setRemarques(String remarques) {
         this.remarques = remarques;
+    }
+
+    @XmlTransient
+    public List<GarProfil> getGarProfilList() {
+        return garProfilList;
+    }
+
+    public void setGarProfilList(List<GarProfil> garProfilList) {
+        this.garProfilList = garProfilList;
+    }
+
+    @XmlTransient
+    public List<TapProfil> getTapProfilList() {
+        return tapProfilList;
+    }
+
+    public void setTapProfilList(List<TapProfil> tapProfilList) {
+        this.tapProfilList = tapProfilList;
+    }
+
+    @XmlTransient
+    public List<RepasProfil> getRepasProfilList() {
+        return repasProfilList;
+    }
+
+    public void setRepasProfilList(List<RepasProfil> repasProfilList) {
+        this.repasProfilList = repasProfilList;
     }
 
     public Groupe getGroupeId() {

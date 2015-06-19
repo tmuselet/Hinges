@@ -6,7 +6,7 @@
 
 package session;
 
-import entities.Tarifs;
+import entities.Classe;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -19,7 +19,7 @@ import javax.persistence.Query;
  */
 @Stateful
 @LocalBean
-public class TarifManager {
+public class ClasseManager {
     @PersistenceContext(unitName = "Hinges-ejbPU")
     private EntityManager em;
 
@@ -27,18 +27,18 @@ public class TarifManager {
         em.persist(object);
     }
 
-    public void add(Tarifs tarif){
-        persist(tarif);
+    public void add(Classe classe){
+        persist(classe);
     }
     
-    public Tarifs update(Tarifs tarif){
-        return em.merge(tarif);
+    public Classe update(Classe classe){
+        return em.merge(classe);
     }
     
-    public Float findByName(String nom){
-        Query query = em.createNamedQuery("Tarifs.findByNom");  
+    public Classe findClasseByName(String nom){
+        Query query = em.createNamedQuery("Classe.findByNom");  
         query.setParameter("nom", nom);
-        return (Float) query.getSingleResult();
+        return (Classe) query.getSingleResult();
     }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
