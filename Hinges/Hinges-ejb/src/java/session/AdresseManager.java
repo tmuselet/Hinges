@@ -6,7 +6,7 @@
 
 package session;
 
-import entities.Tarifs;
+import entities.Adresse;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -19,7 +19,7 @@ import javax.persistence.Query;
  */
 @Stateful
 @LocalBean
-public class TarifManager {
+public class AdresseManager {
     @PersistenceContext(unitName = "Hinges-ejbPU")
     private EntityManager em;
 
@@ -27,18 +27,13 @@ public class TarifManager {
         em.persist(object);
     }
 
-    public void add(Tarifs tarif){
-        persist(tarif);
+    public int add(Adresse adresse){
+        persist(adresse);
+        return adresse.getId();
     }
     
-    public Tarifs update(Tarifs tarif){
-        return em.merge(tarif);
-    }
-    
-    public Float findByName(String nom){
-        Query query = em.createNamedQuery("Tarifs.findByNom");  
-        query.setParameter("nom", nom);
-        return (Float) query.getSingleResult();
+    public Adresse update(Adresse adresse){
+        return em.merge(adresse);
     }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

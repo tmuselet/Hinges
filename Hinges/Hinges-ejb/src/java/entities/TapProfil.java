@@ -7,51 +7,50 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Martin
  */
 @Entity
-@Table(name = "GARDERIE")
+@Table(name = "TAP_PROFIL")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Garderie.findAll", query = "SELECT g FROM Garderie g"),
-    @NamedQuery(name = "Garderie.findById", query = "SELECT g FROM Garderie g WHERE g.id = :id"),
-    @NamedQuery(name = "Garderie.findByDate", query = "SELECT g FROM Garderie g WHERE g.date = :date")})
-public class Garderie implements Serializable {
+    @NamedQuery(name = "TapProfil.findAll", query = "SELECT t FROM TapProfil t"),
+    @NamedQuery(name = "TapProfil.findById", query = "SELECT t FROM TapProfil t WHERE t.id = :id"),
+    @NamedQuery(name = "TapProfil.findByAbsent", query = "SELECT t FROM TapProfil t WHERE t.absent = :absent")})
+public class TapProfil implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Column(name = "DATE")
-    @Temporal(TemporalType.DATE)
-    private Date date;
-    @OneToMany(mappedBy = "idGar")
-    private List<GarProfil> garProfilList;
+    @Column(name = "ABSENT")
+    private Boolean absent;
+    @JoinColumn(name = "ID_TAP", referencedColumnName = "ID")
+    @ManyToOne
+    private Tap idTap;
+    @JoinColumn(name = "ID_PROFIL", referencedColumnName = "ID")
+    @ManyToOne
+    private Profil idProfil;
 
-    public Garderie() {
+    public TapProfil() {
     }
 
-    public Garderie(Integer id) {
+    public TapProfil(Integer id) {
         this.id = id;
     }
 
@@ -63,21 +62,28 @@ public class Garderie implements Serializable {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public Boolean getAbsent() {
+        return absent;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setAbsent(Boolean absent) {
+        this.absent = absent;
     }
 
-    @XmlTransient
-    public List<GarProfil> getGarProfilList() {
-        return garProfilList;
+    public Tap getIdTap() {
+        return idTap;
     }
 
-    public void setGarProfilList(List<GarProfil> garProfilList) {
-        this.garProfilList = garProfilList;
+    public void setIdTap(Tap idTap) {
+        this.idTap = idTap;
+    }
+
+    public Profil getIdProfil() {
+        return idProfil;
+    }
+
+    public void setIdProfil(Profil idProfil) {
+        this.idProfil = idProfil;
     }
 
     @Override
@@ -90,10 +96,10 @@ public class Garderie implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Garderie)) {
+        if (!(object instanceof TapProfil)) {
             return false;
         }
-        Garderie other = (Garderie) object;
+        TapProfil other = (TapProfil) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -102,7 +108,7 @@ public class Garderie implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Garderie[ id=" + id + " ]";
+        return "entities.TapProfil[ id=" + id + " ]";
     }
     
 }
