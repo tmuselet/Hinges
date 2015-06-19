@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Prévision</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h:commandButton id="retour" value="Retour" action="vv" style="float:right;top:2px;"/>
+                Prévisions :<br/><br/>
+                <select></select><br/><br/>
+                <h:form>
+                    <h:dataTable value="" var="item">
+                         <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nom"/>
+                                </f:facet>
+                        </p:column>
+                         <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Prénom"/>
+                                </f:facet>
+                            </p:column>
+                         <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Lundi"/>
+                                </f:facet>
+                            </p:column>
+                         <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Mardi"/>
+                                </f:facet>
+                            </p:column>
+                         <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Jeudi"/>
+                                </f:facet>
+                            </p:column>
+                         <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Vendredi"/>
+                                </f:facet>
+                            </p:column>
+                    </h:dataTable>
+                </h:form>
+
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
