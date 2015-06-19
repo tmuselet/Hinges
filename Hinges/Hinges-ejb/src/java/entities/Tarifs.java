@@ -7,7 +7,6 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,24 +15,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Martin
  */
 @Entity
-@Table(name = "CLASSE")
+@Table(name = "TARIFS")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Classe.findAll", query = "SELECT c FROM Classe c"),
-    @NamedQuery(name = "Classe.findById", query = "SELECT c FROM Classe c WHERE c.id = :id"),
-    @NamedQuery(name = "Classe.findByNom", query = "SELECT c FROM Classe c WHERE c.nom = :nom")})
-public class Classe implements Serializable {
+    @NamedQuery(name = "Tarifs.findAll", query = "SELECT t FROM Tarifs t"),
+    @NamedQuery(name = "Tarifs.findById", query = "SELECT t FROM Tarifs t WHERE t.id = :id"),
+    @NamedQuery(name = "Tarifs.findByNom", query = "SELECT t FROM Tarifs t WHERE t.nom = :nom"),
+    @NamedQuery(name = "Tarifs.findByTarif", query = "SELECT t FROM Tarifs t WHERE t.tarif = :tarif")})
+public class Tarifs implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,13 +41,14 @@ public class Classe implements Serializable {
     @Size(max = 30)
     @Column(name = "NOM")
     private String nom;
-    @OneToMany(mappedBy = "classeId")
-    private List<Profil> profilList;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "TARIF")
+    private Double tarif;
 
-    public Classe() {
+    public Tarifs() {
     }
 
-    public Classe(Integer id) {
+    public Tarifs(Integer id) {
         this.id = id;
     }
 
@@ -69,13 +68,12 @@ public class Classe implements Serializable {
         this.nom = nom;
     }
 
-    @XmlTransient
-    public List<Profil> getProfilList() {
-        return profilList;
+    public Double getTarif() {
+        return tarif;
     }
 
-    public void setProfilList(List<Profil> profilList) {
-        this.profilList = profilList;
+    public void setTarif(Double tarif) {
+        this.tarif = tarif;
     }
 
     @Override
@@ -88,10 +86,10 @@ public class Classe implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Classe)) {
+        if (!(object instanceof Tarifs)) {
             return false;
         }
-        Classe other = (Classe) object;
+        Tarifs other = (Tarifs) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -100,7 +98,7 @@ public class Classe implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Classe[ id=" + id + " ]";
+        return "entities.Tarifs[ id=" + id + " ]";
     }
     
 }

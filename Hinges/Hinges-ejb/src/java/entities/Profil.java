@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Profil.findAll", query = "SELECT p FROM Profil p"),
+    @NamedQuery(name = "Profil.findAllByGroupe", query = "SELECT p FROM Profil p WHERE p.groupe_id = :groupe_id"),
+    @NamedQuery(name = "Profil.findAllByClasse", query = "SELECT p FROM Profil p WHERE p.classe_id = :classe_id"),
     @NamedQuery(name = "Profil.findById", query = "SELECT p FROM Profil p WHERE p.id = :id"),
     @NamedQuery(name = "Profil.findByNom", query = "SELECT p FROM Profil p WHERE p.nom = :nom"),
     @NamedQuery(name = "Profil.findByPrenom", query = "SELECT p FROM Profil p WHERE p.prenom = :prenom"),
@@ -54,6 +56,12 @@ public class Profil implements Serializable {
     @Size(max = 30)
     @Column(name = "REMARQUES")
     private String remarques;
+    @JoinColumn(name = "GROUPE_ID", referencedColumnName = "ID")
+    @ManyToOne
+    private Groupe groupeId;
+    @JoinColumn(name = "CLASSE_ID", referencedColumnName = "ID")
+    @ManyToOne
+    private Classe classeId;
     @JoinColumn(name = "ADRESSE_ID", referencedColumnName = "ID")
     @ManyToOne
     private Adresse adresseId;
@@ -103,6 +111,22 @@ public class Profil implements Serializable {
 
     public void setRemarques(String remarques) {
         this.remarques = remarques;
+    }
+
+    public Groupe getGroupeId() {
+        return groupeId;
+    }
+
+    public void setGroupeId(Groupe groupeId) {
+        this.groupeId = groupeId;
+    }
+
+    public Classe getClasseId() {
+        return classeId;
+    }
+
+    public void setClasseId(Classe classeId) {
+        this.classeId = classeId;
     }
 
     public Adresse getAdresseId() {
