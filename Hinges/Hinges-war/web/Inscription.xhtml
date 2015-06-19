@@ -9,9 +9,11 @@
     <h:body>
         <f:view>
             <h:form>
+                
                 <h:commandButton id="cantine" value="Cantine" action="vv"/><h:commandButton id="tap" value="TAP" action="vv"/><br/><br/>
                 <h:commandButton id="retour" value="Retour" action="vv" style="float:right;top:2px;"/>
                 <div style="text-align:center;width:70%;">
+                    Cantine :<br/>
                     <div style="float:left;width:50%;">
                         <input type="date" name="date"/><br/><br/>
                        
@@ -23,7 +25,21 @@
                         
                     </div>
                 </div>
-                 <h:commandButton id="enregistrer" value="Enregistrer" action="vv"/>
+                <div style="text-align:center;width:70%;">
+                    TAP :<br/>
+                    <div style="float:left;width:50%;">
+                        <input type="date" name="date"/><br/><br/>
+                       
+                    </div>
+                    <div style="float:right;width:50%;">
+                        
+                        <select></select><br/><br/>
+                        <h:commandButton id="addtap" value="Ajouter une séance" action="vv"/> <br/><br/>
+                        <h:commandButton id="supptap" value="Supprimer une séance" action="vv"/>
+                        
+                    </div>
+                </div>
+                <h:commandButton id="enregistrer" value="Enregistrer" action="vv"/>
                 
             </h:form>
         </f:view>
