@@ -133,6 +133,15 @@ public class Profil implements Serializable {
         return true;
     }
 
+    public Profil(String nom, String prenom, String tel, String remarques) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.tel = tel;
+        this.remarques = remarques;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "entities.Profil[ id=" + id + " ]";

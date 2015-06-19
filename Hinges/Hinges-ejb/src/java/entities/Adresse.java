@@ -132,6 +132,15 @@ public class Adresse implements Serializable {
         return true;
     }
 
+    public Adresse(Integer numero, String rue, String ville, Integer cp) {
+        this.numero = numero;
+        this.rue = rue;
+        this.ville = ville;
+        this.cp = cp;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "entities.Adresse[ id=" + id + " ]";

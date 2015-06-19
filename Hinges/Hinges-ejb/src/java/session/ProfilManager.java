@@ -41,18 +41,14 @@ public class ProfilManager {
         em.remove(profil);
     }
     
-    public List<Profil> getAll(){
+    public List<Profil> getAllProfils(){
         Query query = em.createNamedQuery("Profil.findAll");  
         return query.getResultList();
     }
     
-    public List<Profil> getProfilsFromGroupe(Groupe groupe){
+    public List<Profil> getProfilsByGroupe(Groupe groupe){
         Query query = em.createNamedQuery("Profil.findAllByGroupe");  
         query.setParameter("groupe", groupe);
         return query.getResultList();
     }
-    
-    
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 }
