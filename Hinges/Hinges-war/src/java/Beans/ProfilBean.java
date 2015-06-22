@@ -31,13 +31,13 @@ public class ProfilBean {
     
     public List<Profil> getProfils()
     {
-    return profilManager.getAllProfils();
+        return profilManager.getAllProfils();
     }
     
     
     public List<Profil> getProfilsByGroupe(Groupe groupe)
     {
-    return profilManager.getProfilsByGroupe(groupe);
+        return profilManager.getProfilsByGroupe(groupe);
     }
     
     public void supprimer(Profil profil)

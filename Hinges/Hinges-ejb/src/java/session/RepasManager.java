@@ -6,7 +6,7 @@
 
 package session;
 
-import entities.GarProfil;
+import entities.Repas;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateful
 @LocalBean
-public class GarProfilManager {
+public class RepasManager {
     @PersistenceContext(unitName = "Hinges-ejbPU")
     private EntityManager em;
 
@@ -26,16 +26,8 @@ public class GarProfilManager {
         em.persist(object);
     }
 
-    public void add(GarProfil garProfil){
-        persist(garProfil);
-    }
-    
-    public GarProfil update(GarProfil garProfil){
-        return em.merge(garProfil);
-    }
-    
-    public void delete(GarProfil garProfil){
-        em.remove(garProfil);
+    public void add(Repas repas){
+        persist(repas);
     }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
