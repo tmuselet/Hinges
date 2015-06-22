@@ -30,7 +30,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
     @NamedQuery(name = "Users.findById", query = "SELECT u FROM Users u WHERE u.id = :id"),
     @NamedQuery(name = "Users.findByLogin", query = "SELECT u FROM Users u WHERE u.login = :login"),
-    @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")})
+    @NamedQuery(name = "Users.find", query = "SELECT u FROM Users u WHERE u.login = :login and u.password = :password"),
+    @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
+    @NamedQuery(name = "Users.findByUrl", query = "SELECT u FROM Users u WHERE u.url = :url")})
 public class Users implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,6 +46,9 @@ public class Users implements Serializable {
     @Size(max = 30)
     @Column(name = "PASSWORD")
     private String password;
+    @Size(max = 30)
+    @Column(name = "URL")
+    private String url;
 
     public Users() {
     }
@@ -74,6 +79,14 @@ public class Users implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override

@@ -10,14 +10,13 @@
         <h2>Veuillez entrer vos informations de connexion :</h2><br/>
         <f:view>
             <h:form>
-                <p>Login : <input type="text" name="login" value="" /> <br/>
-                Password : <input type="password" name="password" value="" /></p>
-                <input type="submit" value="Se connecter" name="Connect" />
+                <div>
+                    <p><h:outputLabel value="Login : " for="login" /><h:inputText id="login" value="#{userBean.user.login}" title="login" /> <br/>
+                    <h:outputLabel value="Password : " for="password" /><h:inputSecret id="password" value="#{userBean.user.password}" title="password" /></p>
+                    <h:commandButton id="connect" value="Se Connecter" action="#{userBean.connect}"/> <br/><br/>
+                </div>
             </h:form>
         </f:view>
-
-        
-        
     </h:body>
 </html>
 

@@ -23,13 +23,26 @@ import session.ProfilManager;
 @ViewScoped
 public class ProfilBean {
 
-    @EJB
+    
+    
+    /*@EJB
     private ProfilManager profilManager;
+    */
+    /*private Profil profil = new Profil();
     
     public ProfilBean() {
     }
     
-    public List<Profil> getProfils()
+    public Profil getProfil() {
+        return profil;
+    }
+
+    public void setProfil(Profil profil) {
+        this.profil = profil;
+    }*/
+    
+    
+    /*public List<Profil> getProfils()
     {
         return profilManager.getAllProfils();
     }
@@ -51,6 +64,7 @@ public class ProfilBean {
         Adresse adresse = new Adresse(numero, rue, ville, cp);
         nouveau.setAdresseId(adresse);
         profilManager.add(nouveau);
-    }
+    }*/
+
     
 }

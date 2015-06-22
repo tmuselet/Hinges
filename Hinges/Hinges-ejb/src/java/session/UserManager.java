@@ -28,8 +28,14 @@ public class UserManager {
     }
 
     public Users connect(Users user){
-        Query query = em.createNamedQuery("Profil.find");  
-        return (Users) query.getSingleResult();
+        try{
+            Query query = em.createNamedQuery("Users.find");  
+            query.setParameter("login",user.getLogin());
+            query.setParameter("password",user.getPassword());
+            return (Users) query.getSingleResult();
+        }catch(Exception e){
+           return new Users(); 
+        }
     }
     
     public void add(Users user){

@@ -10,12 +10,15 @@
     <h:body>
         <f:view>
             <h:form>
+                <div style="float:left;height:100%;width:100%;margin-left:10px;">
                 <h:commandButton id="retour" value="Retour" action="vv" style="float:right;top:2px;"/>
                  <h:commandButton id="profils" value="Profils" action="vv"/> <h:commandButton id="classe" value="Classes" action="vv"/> <h:commandButton id="groupe" value="Groupes" action="vv"/><br/><br/>
                  <h:commandButton id="create" value="Créer un nouveau profil" action="vv"/><br/>
                  <h:commandButton id="edit" value="Modifier/Supprimer un profil" action="vv"/><br/>
-                 <div id="onprofil" style="float:right;top:50px;">
-                 Nom : <input type="text" name="nom" value="" /><br/>
+                 <div id="onprofil" style="top:50px;">
+                 <br/>    
+                     Profil<br/><br/>
+                     Nom : <input type="text" name="nom" value="" /><br/>
                  Prénom : <input type="text" name="prenom" value="" /><br/>
                  Téléphone : <input type="text" name="tel" value="" /><br/>
                  Adresse : <input type="text" name="adresse" value="" /><br/>
@@ -26,8 +29,11 @@
                  <h:commandButton id="supprimer" value="Supprimer" action="vv"/>
                  </div>
                  
-                 <div id="onclass" style="float:right;top:50px;">
-                     <select></select> <h:commandButton id="add" value="Ajouter un eleve" action="vv"/><br/>
+                 <div id="onclass" style="top:50px;height:150px;">
+                     <select></select> <h:commandButton id="add" value="Ajouter un eleve" action=""/><br/>
+                     <br/>    
+                     Classe :<br/><br/>
+                     Tableau :
                      <h:form>
                          <h:dataTable value="#{test}" var="item">
                              <p:column sortBy="#{item.nom}">
@@ -50,8 +56,12 @@
 
                  </div>
                  
-                 <div id="ongroup" style="float:right;top:50px;">
+                 <div id="ongroup" style="top:50px;height:150px;">
+                     <br/>    
+                     Groupe :<br/><br/>
+                     
                      <select></select>  <h:commandButton id="add" value="Ajouter un eleve" action="vv"/><br/>
+                     Tableau :
                      <h:form>
                          <h:dataTable value="#{test}" var="item">
                              <p:column sortBy="#{item.nom}">
@@ -75,6 +85,7 @@
                  </div>
                  
                  <h:commandButton id="enregistrer" value="Enregistrer" action="vv"/>
+                </div>
             </h:form>
         </f:view>
 
