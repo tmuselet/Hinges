@@ -25,6 +25,7 @@ public class ProfilBean {
 
     @EJB
     private ProfilManager profilManager;
+    private Profil profil = new Profil();
     
     public ProfilBean() {
     }
@@ -32,8 +33,7 @@ public class ProfilBean {
     public List<Profil> getProfils()
     {
         return profilManager.getAllProfils();
-    }
-    
+    }    
     
     public List<Profil> getProfilsByGroupe(Groupe groupe)
     {
@@ -44,13 +44,21 @@ public class ProfilBean {
     {
         profilManager.delete(profil);
     }
-    
-    public void ajouter(String nom, String prenom, String tel, String remarques, int numero, String rue, String ville, int cp)
+
+
+    public Profil getProfil() {
+        return profil;
+    }
+
+    public void setProfil(Profil profil) {
+        this.profil = profil;
+    }
+        
+    public void ajouter()
     {
-        Profil nouveau = new Profil(nom, prenom, tel, remarques);
-        Adresse adresse = new Adresse(numero, rue, ville, cp);
-        nouveau.setAdresseId(adresse);
-        profilManager.add(nouveau);
+        //Adresse adresse = new Adresse(numero, rue, ville, cp);
+        //nouveau.setAdresseId(adresse);
+        profilManager.add(profil);
     }
     
 }

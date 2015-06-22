@@ -18,15 +18,15 @@
                  <div id="onprofil" style="top:50px;">
                  <br/>    
                      Profil<br/><br/>
-                 Nom : <input type="text" name="nom" value="" /><br/>
-                 Prénom : <input type="text" name="prenom" value="" /><br/>
-                 Téléphone : <input type="text" name="tel" value="" /><br/>
+                     Nom : <input type="text" name="nom" value="#{profilBean.profil.nom}" /><br/>
+                     Prénom : <input type="text" name="prenom" value="#{profilBean.profil.prenom}" /><br/>
+                     Téléphone : <input type="text" name="tel" value="#{profilBean.profil.tel}" /><br/>
                  Adresse : <input type="text" name="adresse" value="" /><br/>
                  Ville : <input type="text" name="ville" value="" /><br/>
-                 Remarques : <input type="text" name="remarques" value="" /><br/>
+                    Remarques : <input type="text" name="remarques" value="#{profilBean.profil.remarques}" /><br/>
                  
                  
-                 <h:commandButton id="supprimer" value="Supprimer" action="vv"/>
+                    <h:commandButton id="supprimer" value="Supprimer" action="#{profilBean.ajouter()}"/>
                  </div>
                  
                  <div id="onclass" style="top:50px;height:150px;">
