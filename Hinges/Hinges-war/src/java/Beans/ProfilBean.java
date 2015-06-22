@@ -33,6 +33,7 @@ public class ProfilBean {
     public ProfilBean() {
     }
     
+
     public Profil getProfil() {
         return profil;
     }
